@@ -1,0 +1,46 @@
+# meeting details
+meeting_date = '05-09-2023'
+meeting_time = '12:00:00'
+start_datetime = meeting_date + " " + meeting_time
+meeting_tz = "Europe/London"
+url = "https://unity3d.zoom.us/j/93405166024?pwd=L3kwcHkyL2lPRkl3TTE2TnZhd2ZFZz09"
+
+# helper functions to format date, time
+def format_date(x):
+    date_list = x.split(sep="-")
+    return list(map(int, date_list))
+
+def format_time(x):
+    time_list = x.split(sep=":")
+    return list(map(int, time_list))
+
+def given_datetime(given_date, given_time):
+    # YY, MM, DD, HH, MM
+    return datetime(given_date[2], given_date[1], given_date[0], given_time[0], given_time[1], given_time[2])
+
+# join the meeting (automate date and time for joining)
+"""
+def join_meeting(zoom_link, meeting_date, meeting_time):
+
+    meeting_date_x = format_date(meeting_date)
+    meeting_time_x = format_time(meeting_time)
+    required_datetime = given_datetime(meeting_date_x, meeting_time_x)
+    required_datetime_string = required_datetime.strftime('%Y-%m-%d %H:%M:%S')
+
+    start_time_obj = datetime.strptime(required_datetime_string, '%Y-%m-%d %H:%M:%S')
+    print(start_time_obj)
+    #add timezone data to correct joining time - CURRENTLY WRONG, ADDS EXTRA HOUR
+    start_time_obj_meeting_tz = required_datetime.replace(tzinfo=tz(meeting_tz))
+    now_tz = datetime.now()
+    now_tz = now_tz.replace(tzinfo=tz(meeting_tz))
+
+    # time difference between current and meeting time
+    wait_time_sec = (start_time_obj_meeting_tz -now_tz.replace(microsecond=0)).total_seconds()
+    if wait_time_sec < 0 :
+        print("Your ZOOM meting has already started! Joining...")
+    else:
+        print("Your ZOOM meeting starts in " + str(wait_time_sec/60) + " min")
+        time.sleep(wait_time_sec)
+
+"""
+#join_meeting("https://unity3d.zoom.us/j/93405166024?pwd=L3kwcHkyL2lPRkl3TTE2TnZhd2ZFZz09", "05-09-2023", "14:35:00")    
